@@ -36,3 +36,8 @@ DTR = DecisionTreeRegressor(max_depth=38, random_state=1)
 DTR.fit(train_X, train_y)
 data_y_dtr = DTR.predict(test_X)
 print(mean_absolute_error(data_y_dtr, test_y))
+
+RFR = RandomForestRegressor(random_state=1)
+RFR.fit(train_X, train_y)
+data_y_rfr = RFR.predict(test_X)
+print(mean_absolute_error(data_y_rfr, test_y)) #22816
