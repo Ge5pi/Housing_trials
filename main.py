@@ -17,7 +17,7 @@ y = housing.SalePrice
 X = housing[features]
 
 train_X, test_X, train_y, test_y = train_test_split(X, y, random_state = 1)
-LR = LogisticRegression(random_state=1, max_iter=200)
+LR = LogisticRegression(random_state=1, max_iter=5000)
 LR.fit(train_X, train_y)
 data_y = LR.predict(test_X)
 print(mean_absolute_error(data_y, test_y))
