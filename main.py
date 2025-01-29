@@ -3,6 +3,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
 housing = pd.read_csv("train.csv")
 features = ["MSSubClass", "MSZoning_RL", "MSZoning_FV", "MSZoning_RH", "MSZoning_RM",
             "LotFrontage", "LotArea", "Utilities_AllPub", "Utilities_NoSeWa", "OverallQual", "OverallCond",
@@ -29,3 +31,8 @@ DTC = DecisionTreeClassifier(max_depth=38, random_state=1)
 DTC.fit(train_X, train_y)
 data_y_dtc = DTC.predict(test_X)
 print(mean_absolute_error(data_y_dtc, test_y))
+
+DTR = DecisionTreeRegressor(max_depth=38, random_state=1)
+DTR.fit(train_X, train_y)
+data_y_dtr = DTR.predict(test_X)
+print(mean_absolute_error(data_y_dtr, test_y))
