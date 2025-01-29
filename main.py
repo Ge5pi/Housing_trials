@@ -25,7 +25,7 @@ data_y = LR.predict(test_X)
 print(mean_absolute_error(data_y, test_y))
 
 
-DTC = DecisionTreeClassifier(max_depth=14, random_state=1)
+DTC = DecisionTreeClassifier(max_depth=38, random_state=1)
 DTC.fit(train_X, train_y)
 data_y_dtc = DTC.predict(test_X)
 print(mean_absolute_error(data_y_dtc, test_y))
