@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error
 housing = pd.read_csv("train.csv")
@@ -15,9 +16,16 @@ housing = housing.dropna(axis=0, how='any')
 print(housing)
 y = housing.SalePrice
 X = housing[features]
-
 train_X, test_X, train_y, test_y = train_test_split(X, y, random_state = 1)
+
+
 LR = LogisticRegression(random_state=1, max_iter=5000)
 LR.fit(train_X, train_y)
 data_y = LR.predict(test_X)
 print(mean_absolute_error(data_y, test_y))
+
+
+DTC = DecisionTreeClassifier(max_depth=14, random_state=1)
+DTC.fit(train_X, train_y)
+data_y_dtc = DTC.predict(test_X)
+print(mean_absolute_error(data_y_dtc, test_y))
