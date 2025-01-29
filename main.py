@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import RandomForestClassifier
 housing = pd.read_csv("train.csv")
 features = ["MSSubClass", "MSZoning_RL", "MSZoning_FV", "MSZoning_RH", "MSZoning_RM",
             "LotFrontage", "LotArea", "Utilities_AllPub", "Utilities_NoSeWa", "OverallQual", "OverallCond",
@@ -41,3 +42,8 @@ RFR = RandomForestRegressor(random_state=1)
 RFR.fit(train_X, train_y)
 data_y_rfr = RFR.predict(test_X)
 print(mean_absolute_error(data_y_rfr, test_y)) #22816
+
+RFC = RandomForestClassifier(random_state=1, max_depth=20)
+RFC.fit(train_X, train_y)
+data_y_rfc = RFC.predict(test_X)
+print(mean_absolute_error(data_y_rfc, test_y)) #28229
