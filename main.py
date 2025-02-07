@@ -17,20 +17,31 @@ print("\nBasic stats:\n", df.describe())
 
 # 3. Basic cleaning
 
-# --- 3.1 Drop columns with too many missing values (example: Alley, PoolQC, Fence, MiscFeature often missing)
+# 3.1 Drop columns with too many missing values (example: Alley, PoolQC, Fence, MiscFeature often missing)
 cols_with_many_nans = ["Alley", "PoolQC", "Fence", "MiscFeature"]
 df.drop(columns=cols_with_many_nans, inplace=True)
 
 
-# --- 3.2 Fill numeric missing values with median
+# 3.2 Fill numeric missing values with median
 num_features = df.select_dtypes(include=[np.number]).columns
 num_imputer = SimpleImputer(strategy="median")
 df[num_features] = num_imputer.fit_transform(df[num_features])
 
 
-# --- 3.3 Fill categorical missing values with "None"
+# 3.3 Fill categorical missing values with "None"
 cat_features = df.select_dtypes(include=["object"]).columns
 for cat_col in cat_features:
     df[cat_col] = df[cat_col].fillna("None")
+
+
+# 3.4 Remove a small number of extreme outliers for SalePrice (optional)
+#      E.g., Suppose any price over 700000 might be an outlier in this dataset
+df = df[df["SalePrice"] < 700000]
+
+# 4. Exploratory analysis
+#    Quick correlation look at the top correlated features with SalePrice
+corr_matrix = df.corr()
+top_corr = corr_matrix["SalePrice"].abs().sort_values(ascending=False).head(15)
+print("\nTop correlated features with SalePrice:\n", top_corr)
 
 
