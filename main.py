@@ -21,3 +21,10 @@ print("\nBasic stats:\n", df.describe())
 cols_with_many_nans = ["Alley", "PoolQC", "Fence", "MiscFeature"]
 df.drop(columns=cols_with_many_nans, inplace=True)
 
+
+# --- 3.2 Fill numeric missing values with median
+num_features = df.select_dtypes(include=[np.number]).columns
+num_imputer = SimpleImputer(strategy="median")
+df[num_features] = num_imputer.fit_transform(df[num_features])
+
+
