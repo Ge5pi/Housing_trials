@@ -45,3 +45,31 @@ top_corr = corr_matrix["SalePrice"].abs().sort_values(ascending=False).head(15)
 print("\nTop correlated features with SalePrice:\n", top_corr)
 
 
+# 5. correlation ratio
+features = [
+    "OverallQual",
+    "GrLivArea",
+    "GarageCars",
+    "GarageArea",
+    "TotalBsmtSF",
+    "YearBuilt",
+    "YearRemodAdd",
+    "1stFlrSF",
+    "FullBath",
+    "TotRmsAbvGrd"
+]
+
+X = df[features]
+y = df["SalePrice"]
+
+# 6. Split into train/test sets
+train_X, test_X, train_y, test_y = train_test_split(X, y,
+                                                    test_size=0.2,
+                                                    random_state=42)
+
+# 7. Model training
+model = RandomForestRegressor(n_estimators=100, random_state=42)
+model.fit(train_X, train_y)
+preds = model.predict(test_X)
+
+mae = mean_absolute_error(test_y, preds)
