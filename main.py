@@ -28,3 +28,9 @@ num_imputer = SimpleImputer(strategy="median")
 df[num_features] = num_imputer.fit_transform(df[num_features])
 
 
+# --- 3.3 Fill categorical missing values with "None"
+cat_features = df.select_dtypes(include=["object"]).columns
+for cat_col in cat_features:
+    df[cat_col] = df[cat_col].fillna("None")
+
+
