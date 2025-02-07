@@ -1,49 +1,23 @@
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_absolute_error
-from sklearn.tree import DecisionTreeRegressor
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.ensemble import RandomForestClassifier
-housing = pd.read_csv("train.csv")
-features = ["MSSubClass", "MSZoning_RL", "MSZoning_FV", "MSZoning_RH", "MSZoning_RM",
-            "LotFrontage", "LotArea", "Utilities_AllPub", "Utilities_NoSeWa", "OverallQual", "OverallCond",
-            "YearBuilt", "ExterQual_Ex", "ExterQual_Gd", "ExterQual_TA", "ExterQual_Fa", "ExterCond_Fa",
-            "ExterCond_Po", "ExterCond_Ex", "ExterCond_Gd", "ExterCond_TA", "BsmtCond_Gd", "BsmtCond_TA", "BsmtCond_Fa",
-            "BsmtCond_Po", "BsmtFinType2_GLQ", "BsmtFinType2_ALQ", "BsmtFinType2_BLQ", "BsmtFinType2_Rec", "BsmtFinType2_LwQ",
-            "BsmtFinType2_Unf", "HeatingQC_Ex", "HeatingQC_Gd", "HeatingQC_TA", "HeatingQC_Fa", "HeatingQC_Po",
-            "Electrical_SBrkr", "Electrical_FuseA", "Electrical_FuseF", "Electrical_FuseP", "Electrical_Mix", "GrLivArea", "BedroomAbvGr", "PoolArea", "YrSold"]
-housing = pd.get_dummies(housing)
-housing = housing.dropna(axis=0, how='any')
-print(housing)
-y = housing.SalePrice
-X = housing[features]
-train_X, test_X, train_y, test_y = train_test_split(X, y, random_state = 1)
+from sklearn.impute import SimpleImputer
+from sklearn.metrics import mean_absolute_error
 
+#Housing data
+df = pd.read_csv("train.csv")
 
-LR = LogisticRegression(random_state=1, max_iter=5000)
-LR.fit(train_X, train_y)
-data_y = LR.predict(test_X)
-print(mean_absolute_error(data_y, test_y))
+# 2. Basic data exploration
+print("Data frame shape:", df.shape)
+print("\nData types and non-null counts:\n", df.info())
+print("\nBasic stats:\n", df.describe())
 
+# 3. Basic cleaning
 
-DTC = DecisionTreeClassifier(max_depth=38, random_state=1)
-DTC.fit(train_X, train_y)
-data_y_dtc = DTC.predict(test_X)
-print(mean_absolute_error(data_y_dtc, test_y))
+# --- 3.1 Drop columns with too many missing values (example: Alley, PoolQC, Fence, MiscFeature often missing)
+cols_with_many_nans = ["Alley", "PoolQC", "Fence", "MiscFeature"]
+df.drop(columns=cols_with_many_nans, inplace=True)
 
-DTR = DecisionTreeRegressor(max_depth=38, random_state=1)
-DTR.fit(train_X, train_y)
-data_y_dtr = DTR.predict(test_X)
-print(mean_absolute_error(data_y_dtr, test_y))
-
-RFR = RandomForestRegressor(random_state=1)
-RFR.fit(train_X, train_y)
-data_y_rfr = RFR.predict(test_X)
-print(mean_absolute_error(data_y_rfr, test_y)) #22816
-
-RFC = RandomForestClassifier(random_state=1, max_depth=15)
-RFC.fit(train_X, train_y)
-data_y_rfc = RFC.predict(test_X)
-print(mean_absolute_error(data_y_rfc, test_y)) #28229
