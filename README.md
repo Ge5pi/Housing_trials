@@ -23,5 +23,7 @@ The script outputs the Mean Absolute Error (MAE) for each model, allowing you to
 - Random Forest Regressor MAE: 22816
 - Random Forest Classifier MAE: 28229
 
-
-
+## Notes
+- The dataset is preprocessed using one-hot encoding for categorical variables and missing values are dropped.
+- Logistic Regression and classification models are included for demonstration but are not ideal for predicting continuous variables like house prices.
+- The Random Forest Regressor typically provides the best performance for this dataset.
