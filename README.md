@@ -17,3 +17,11 @@ The script uses a combination of numerical and categorical features, including:
 - `YearBuilt`: Original construction date.
 - `GrLivArea`: Above grade (ground) living area square feet.
 - And many more (see `main.py` for the full list).
+
+## Output
+The script outputs the Mean Absolute Error (MAE) for each model, allowing you to compare their performance. For example:
+- Random Forest Regressor MAE: 22816
+- Random Forest Classifier MAE: 28229
+
+
+
