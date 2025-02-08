@@ -27,3 +27,7 @@ The script outputs the Mean Absolute Error (MAE) for each model, allowing you to
 - The dataset is preprocessed using one-hot encoding for categorical variables and missing values are dropped.
 - Logistic Regression and classification models are included for demonstration but are not ideal for predicting continuous variables like house prices.
 - The Random Forest Regressor typically provides the best performance for this dataset.
+
+## Acknowledgments
+- The Ames Housing dataset is publicly available and widely used for regression tasks.
+- Special thanks to the creators of the dataset and the machine learning community for their contributions.
