@@ -31,3 +31,10 @@ The script outputs the Mean Absolute Error (MAE) for each model, allowing you to
 ## Acknowledgments
 - The Ames Housing dataset is publicly available and widely used for regression tasks.
 - Special thanks to the creators of the dataset and the machine learning community for their contributions.
+
+
+## Future Improvements
+🚀 **Hyperparameter Tuning** - Optimize tree depth, number of estimators, etc.
+📊 **Feature Engineering** - Include more relevant features to improve accuracy.
+🧹 **Handling Missing Data** - Implement better strategies instead of dropping values.
+⚡ **Deep Learning Models** - Experiment with neural networks for price prediction.
