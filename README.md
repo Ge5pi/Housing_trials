@@ -35,6 +35,9 @@ The script outputs the Mean Absolute Error (MAE) for each model, allowing you to
 
 ## Future Improvements
 🚀 **Hyperparameter Tuning** - Optimize tree depth, number of estimators, etc.
+
 📊 **Feature Engineering** - Include more relevant features to improve accuracy.
+
 🧹 **Handling Missing Data** - Implement better strategies instead of dropping values.
+
 ⚡ **Deep Learning Models** - Experiment with neural networks for price prediction.
