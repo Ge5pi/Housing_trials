@@ -41,3 +41,11 @@ The script outputs the Mean Absolute Error (MAE) for each model, allowing you to
 🧹 **Handling Missing Data** - Implement better strategies instead of dropping values.
 
 ⚡ **Deep Learning Models** - Experiment with neural networks for price prediction.
+
+| Model | MAE |
+|--------|------|
+| **Logistic Regression** | Varies (Depends on Convergence) |
+| **Decision Tree Classifier** | Higher Error (Not Ideal for Regression) |
+| **Decision Tree Regressor** | Good Performance |
+| **Random Forest Regressor** | **Best Performance (~22,816)** |
+| **Random Forest Classifier** | High Error (~28,229) |
