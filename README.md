@@ -7,6 +7,7 @@ This project uses the Ames Housing dataset to predict house prices based on vari
 - **data_description.txt**: Provides detailed descriptions of all the features in the dataset.
 - **train.csv**: The dataset used for training and testing the models.
 - **main.py**: The main Python script that preprocesses the data, trains models, and evaluates their performance.
+- **notes.py**: External notes and attempts.
 
 ## Features Used
 The script uses a combination of numerical and categorical features, including:
